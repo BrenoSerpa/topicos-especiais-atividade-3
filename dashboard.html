@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Gestor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Participação Cidadã</div>
+        <nav>
+            <a href="mapa.html">Mapa de Propostas</a>
+            <a href="nova-proposta.html">Nova Proposta</a>
+            <a href="votacao.html">Consultas Públicas</a>
+            <a href="painel.html">Meu Painel</a>
+            <a href="dashboard.html">Painel do Gestor</a>
+            <a href="#" onclick="logout()">Sair</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Painel do Gestor Público</h2>
+        <p>Acompanhamento das Métricas de Auditoria e ODS 11.</p>
+        
+        <div class="metric-box">
+            <h3>Taxa de Engajamento Cívico Digital</h3>
+            <p>Fórmula: (Usuários Ativos no Mês / População) * 100</p>
+            <div class="metric-number">3,0%</div>
+            <p><strong>Usuários Únicos Ativos:</strong> 6.000 cidadãos</p>
+            <p><strong>Meta Anual:</strong> Atingida ✅</p>
+        </div>
+        
+        <div style="margin-top: 30px;" class="card">
+            <h3>Gerenciamento de Demandas</h3>
+            <p>Total de Propostas Enviadas neste mês: <strong>1.200</strong></p>
+            <button class="btn" onclick="alert('Simulação: Abrindo painel para alterar status de propostas para Em Execução.')">Gerenciar Status de Propostas</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

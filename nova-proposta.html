@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Proposta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Participação Cidadã</div>
+        <nav>
+            <a href="mapa.html">Mapa de Propostas</a>
+            <a href="nova-proposta.html">Nova Proposta</a>
+            <a href="votacao.html">Consultas Públicas</a>
+            <a href="painel.html">Meu Painel</a>
+            <a href="dashboard.html">Painel do Gestor</a>
+            <a href="#" onclick="logout()">Sair</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Enviar Nova Proposta</h2>
+        <p>Preencha os dados abaixo para registrar sua demanda.</p>
+        <form onsubmit="enviarProposta(event)">
+            <label>Título da Proposta *</label>
+            <input type="text" required placeholder="Ex: Asfalto na Rua Y">
+            
+            <label>Categoria *</label>
+            <select required>
+                <option value="">Selecione...</option>
+                <option>Mobilidade Urbana</option>
+                <option>Segurança</option>
+                <option>Saúde</option>
+                <option>Limpeza e Meio Ambiente</option>
+            </select>
+            
+            <label>Descrição Detalhada *</label>
+            <textarea rows="4" required placeholder="Descreva o problema e a sugestão de melhoria..."></textarea>
+            
+            <label>Localização (Simulação de Mapa) *</label>
+            <div style="background: #e0e0e0; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-radius: 4px;">
+                📍 Ponto selecionado no mapa: Lat -22.90, Lng -43.17
+            </div>
+            
+            <button type="submit" class="btn">Enviar Proposta Oficial</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

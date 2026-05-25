@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Painel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Participação Cidadã</div>
+        <nav>
+            <a href="mapa.html">Mapa de Propostas</a>
+            <a href="nova-proposta.html">Nova Proposta</a>
+            <a href="votacao.html">Consultas Públicas</a>
+            <a href="painel.html">Meu Painel</a>
+            <a href="dashboard.html">Painel do Gestor</a>
+            <a href="#" onclick="logout()">Sair</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Meu Painel (Cidadão)</h2>
+        <p>Acompanhe o status das suas solicitações e progressos.</p>
+        <table style="width: 100%; text-align: left; border-collapse: collapse; margin-top: 20px;">
+            <tr style="border-bottom: 2px solid #ccc;">
+                <th>Proposta</th>
+                <th>Fase Atual</th>
+                <th>Status Público</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px 0;">Asfalto na Rua Y (Sua proposta)</td>
+                <td>Mapa de Propostas</td>
+                <td><span class="badge" style="background: #e2e3e5; color: #383d41;">Recebendo Apoios</span></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px 0;">Ciclovia na Av. Principal (Apoiada)</td>
+                <td>Consulta Pública</td>
+                <td><span class="badge" style="background: #cce5ff; color: #004085;">Em Consulta</span></td>
+            </tr>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

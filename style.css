@@ -1,0 +1,72 @@
+:root {
+    --gov-blue: #1351B4;
+    --gov-light-blue: #E8F0FA;
+    --gov-green: #00884A;
+    --text-dark: #333;
+    --bg-gray: #F4F4F4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--bg-gray);
+    color: var(--text-dark);
+}
+
+header {
+    background-color: var(--gov-blue);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { font-size: 1.2rem; font-weight: bold; }
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 1rem;
+}
+
+nav a:hover { text-decoration: underline; }
+
+.container { 
+    max-width: 800px; 
+    margin: 30px auto; 
+    padding: 30px; 
+    background: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+}
+
+/* Botões Gerais */
+.btn {
+    background-color: var(--gov-blue); color: white; border: none;
+    padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 1rem;
+    margin-top: 10px; text-decoration: none; display: inline-block;
+}
+.btn-green { background-color: var(--gov-green); }
+.btn:hover { opacity: 0.9; }
+
+/* Login GOV.br */
+.login-box { text-align: center; padding: 40px; }
+.btn-gov { background-color: var(--gov-blue); border-radius: 20px; padding: 15px 30px; font-weight: bold; }
+
+/* Cards de Propostas */
+.card { border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+.card h3 { margin-top: 0; color: var(--gov-blue); }
+.badge { background: var(--gov-light-blue); color: var(--gov-blue); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; }
+
+/* Formulários */
+input, select, textarea {
+    width: 100%; padding: 10px; margin: 10px 0 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+}
+
+/* Dashboard */
+.metric-box {
+    background: var(--gov-light-blue); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--gov-blue);
+}
+.metric-number { font-size: 3rem; font-weight: bold; color: var(--gov-blue); margin: 10px 0; }

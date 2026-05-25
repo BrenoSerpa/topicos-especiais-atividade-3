@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Participação Cidadã - ODS 11</title>
+    <style>
+        :root {
+            --gov-blue: #1351B4;
+            --gov-light-blue: #E8F0FA;
+            --gov-green: #00884A;
+            --text-dark: #333;
+            --bg-gray: #F4F4F4;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+        }
+        header {
+            background-color: var(--gov-blue);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: bold; }
+        nav button {
+            background: none; border: none; color: white;
+            margin-left: 15px; cursor: pointer; font-size: 1rem;
+        }
+        nav button:hover { text-decoration: underline; }
+        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+        
+        /* Telas (Views) */
+        .view { display: none; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .active { display: block; }
+        
+        /* Botões Gerais */
+        .btn {
+            background-color: var(--gov-blue); color: white; border: none;
+            padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 1rem;
+            margin-top: 10px;
+        }
+        .btn-green { background-color: var(--gov-green); }
+        .btn:hover { opacity: 0.9; }
+        
+        /* Login GOV.br */
+        .login-box { text-align: center; padding: 40px; }
+        .btn-gov { background-color: var(--gov-blue); border-radius: 20px; padding: 15px 30px; font-weight: bold; }
+        
+        /* Cards de Propostas */
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+        .card h3 { margin-top: 0; color: var(--gov-blue); }
+        .badge { background: var(--gov-light-blue); color: var(--gov-blue); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; }
+        
+        /* Formulários */
+        input, select, textarea {
+            width: 100%; padding: 10px; margin: 10px 0 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+        }
+        
+        /* Dashboard */
+        .metric-box {
+            background: var(--gov-light-blue); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--gov-blue);
+        }
+        .metric-number { font-size: 3rem; font-weight: bold; color: var(--gov-blue); margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <header id="main-header" style="display: none;">
+        <div class="logo">Participação Cidadã</div>
+        <nav>
+            <button onclick="navigate('mapa')">Mapa de Propostas</button>
+            <button onclick="navigate('nova-proposta')">Nova Proposta</button>
+            <button onclick="navigate('votacao')">Consultas Públicas</button>
+            <button onclick="navigate('painel')">Meu Painel</button>
+            <button onclick="navigate('dashboard')">Painel do Gestor</button>
+            <button onclick="logout()">Sair</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="view-login" class="view active login-box">
+            <h2>Identifique-se no gov.br</h2>
+            <p>Plataforma Municipal de Participação Cidadã - ODS 11</p>
+            <br>
+            <button class="btn btn-gov" onclick="login()">Entrar com gov.br</button>
+            <p style="font-size: 0.8rem; margin-top: 20px; color: #666;">*Acesso simulado para cidadãos e gestores.</p>
+        </div>
+
+        <div id="view-mapa" class="view">
+            <h2>Mapa de Propostas da Comunidade</h2>
+            <p>Veja as demandas da sua região e apoie as causas importantes.</p>
+            
+            <div class="card">
+                <h3>Revitalização da Praça do X</h3>
+                <span class="badge">Mobilidade e Lazer</span>
+                <p>Instalação de nova iluminação e reforma dos bancos da praça central.</p>
+                <p><strong>Apoios:</strong> <span id="contador-apoio-1">245</span> cidadãos apoiam isso.</p>
+                <button class="btn btn-green" onclick="apoiar(1)">👍 Apoiar Proposta</button>
+            </div>
+            
+            <div class="card">
+                <h3>Mutirão de Limpeza Urbana no Bairro Sul</h3>
+                <span class="badge">Limpeza Urbana</span>
+                <p>Solicitação de limpeza em terrenos baldios que estão acumulando entulho.</p>
+                <p><strong>Apoios:</strong> 89 cidadãos apoiam isso.</p>
+                <button class="btn btn-green">👍 Apoiar Proposta</button>
+            </div>
+        </div>
+
+        <div id="view-nova-proposta" class="view">
+            <h2>Enviar Nova Proposta</h2>
+            <p>Preencha os dados abaixo para registrar sua demanda.</p>
+            <form onsubmit="enviarProposta(event)">
+                <label>Título da Proposta *</label>
+                <input type="text" required placeholder="Ex: Asfalto na Rua Y">
+                
+                <label>Categoria *</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option>Mobilidade Urbana</option>
+                    <option>Segurança</option>
+                    <option>Saúde</option>
+                    <option>Limpeza e Meio Ambiente</option>
+                </select>
+                
+                <label>Descrição Detalhada *</label>
+                <textarea rows="4" required placeholder="Descreva o problema e a sugestão de melhoria..."></textarea>
+                
+                <label>Localização (Simulação de Mapa) *</label>
+                <div style="background: #e0e0e0; height: 100px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-radius: 4px;">
+                    📍 Ponto selecionado no mapa: Lat -22.90, Lng -43.17
+                </div>
+                
+                <button type="submit" class="btn">Enviar Proposta Oficial</button>
+            </form>
+        </div>
+
+        <div id="view-votacao" class="view">
+            <h2>Consultas Públicas Ativas</h2>
+            <p>Propostas que atingiram o quórum e estão em fase de deliberação oficial.</p>
+            <div class="card" style="border-color: var(--gov-green);">
+                <h3>Implementação de Ciclovia na Av. Principal</h3>
+                <p>Esta proposta popular atingiu 1.500 apoios e virou pauta. Você é a favor?</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-green" onclick="alert('Voto SIM registrado com sucesso!')">Sim, sou a favor</button>
+                    <button class="btn" style="background: #d9534f;" onclick="alert('Voto NÃO registrado com sucesso!')">Não, sou contra</button>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Status Atual:</strong> 80% de aprovação parcial.</p>
+            </div>
+        </div>
+
+        <div id="view-painel" class="view">
+            <h2>Meu Painel (Cidadão)</h2>
+            <p>Acompanhe o status das suas solicitações.</p>
+            <table style="width: 100%; text-align: left; border-collapse: collapse; margin-top: 20px;">
+                <tr style="border-bottom: 2px solid #ccc;">
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Status Público</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px 0;">#45</td>
+                    <td>Iluminação Rua Alfa</td>
+                    <td><span class="badge" style="background: #fff3cd; color: #856404;">Em Análise (Sec. Obras)</span></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0;">#12</td>
+                    <td>Ponto de Ônibus Coberto</td>
+                    <td><span class="badge" style="background: #d4edda; color: #155724;">Concluída</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="view-dashboard" class="view">
+            <h2>Painel do Gestor Público</h2>
+            <p>Acompanhamento das Métricas de Auditoria e ODS 11.</p>
+            
+            <div class="metric-box">
+                <h3>Taxa de Engajamento Cívico Digital</h3>
+                <p>Fórmula: (Usuários Ativos no Mês / População) * 100</p>
+                <div class="metric-number">3,0%</div>
+                <p><strong>Usuários Únicos Ativos:</strong> 6.000 cidadãos</p>
+                <p><strong>Meta Anual:</strong> Atingida ✅</p>
+            </div>
+            
+            <div style="margin-top: 30px;" class="card">
+                <h3>Gerenciamento de Demandas</h3>
+                <p>Total de Propostas Enviadas neste mês: <strong>1.200</strong></p>
+                <button class="btn" onclick="alert('Simulação: Abrindo painel para alterar status de propostas para Em Execução.')">Gerenciar Status de Propostas</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função de navegação entre telas
+        function navigate(viewId) {
+            // Esconde todas as telas
+            const views = document.querySelectorAll('.view');
+            views.forEach(view => view.classList.remove('active'));
+            // Mostra a tela solicitada
+            document.getElementById('view-' + viewId).classList.add('active');
+        }
+
+        // Função de Login Simulado
+        function login() {
+            document.getElementById('main-header').style.display = 'flex';
+            navigate('mapa'); // Redireciona para o mapa de propostas após login
+        }
+
+        // Função de Logout
+        function logout() {
+            document.getElementById('main-header').style.display = 'none';
+            navigate('login');
+        }
+
+        // Função de simular o formulário
+        function enviarProposta(event) {
+            event.preventDefault(); // Impede o recarregamento da página
+            alert("Sua proposta foi registrada com sucesso e enviada para o Mapa da Comunidade!");
+            navigate('painel');
+        }
+
+        // Função para simular o botão de apoio
+        function apoiar(id) {
+            const contador = document.getElementById('contador-apoio-' + id);
+            let valorAtual = parseInt(contador.innerText);
+            contador.innerText = valorAtual + 1;
+            alert("Apoio registrado! Quando atingir o quórum, a proposta virará uma Consulta Pública.");
+        }
+    </script>
+</body>
+</html>

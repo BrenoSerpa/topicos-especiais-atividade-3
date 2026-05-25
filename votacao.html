@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas Públicas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Participação Cidadã</div>
+        <nav>
+            <a href="mapa.html">Mapa de Propostas</a>
+            <a href="nova-proposta.html">Nova Proposta</a>
+            <a href="votacao.html">Consultas Públicas</a>
+            <a href="painel.html">Meu Painel</a>
+            <a href="dashboard.html">Painel do Gestor</a>
+            <a href="#" onclick="logout()">Sair</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Consultas Públicas Ativas</h2>
+        <p>Propostas que atingiram o quórum e estão em fase de deliberação oficial.</p>
+        <div class="card" style="border-color: var(--gov-green);">
+            <h3>Implementação de Ciclovia na Av. Principal</h3>
+            <p>Esta proposta popular atingiu 1.500 apoios e virou pauta. Você é a favor?</p>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-green" onclick="votar('SIM')">Sim, sou a favor</button>
+                <button class="btn" style="background: #d9534f;" onclick="votar('NÃO')">Não, sou contra</button>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Status Atual:</strong> 80% de aprovação parcial.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

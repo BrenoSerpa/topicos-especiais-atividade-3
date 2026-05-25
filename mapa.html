@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Propostas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Participação Cidadã</div>
+        <nav>
+            <a href="mapa.html">Mapa de Propostas</a>
+            <a href="nova-proposta.html">Nova Proposta</a>
+            <a href="votacao.html">Consultas Públicas</a>
+            <a href="painel.html">Meu Painel</a>
+            <a href="dashboard.html">Painel do Gestor</a>
+            <a href="#" onclick="logout()">Sair</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Mapa de Propostas da Comunidade</h2>
+        <p>Veja as demandas da sua região e apoie as causas importantes.</p>
+        
+        <div class="card">
+            <h3>Revitalização da Praça do X</h3>
+            <span class="badge">Mobilidade e Lazer</span>
+            <p>Instalação de nova iluminação e reforma dos bancos da praça central.</p>
+            <p><strong>Apoios:</strong> <span id="contador-apoio-1">245</span> cidadãos apoiam isso.</p>
+            <button class="btn btn-green" onclick="apoiar(1)">👍 Apoiar Proposta</button>
+        </div>
+        
+        <div class="card">
+            <h3>Mutirão de Limpeza Urbana no Bairro Sul</h3>
+            <span class="badge">Limpeza Urbana</span>
+            <p>Solicitação de limpeza em terrenos baldios que estão acumulando entulho.</p>
+            <p><strong>Apoios:</strong> <span id="contador-apoio-2">89</span> cidadãos apoiam isso.</p>
+            <button class="btn btn-green" onclick="apoiar(2)">👍 Apoiar Proposta</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
